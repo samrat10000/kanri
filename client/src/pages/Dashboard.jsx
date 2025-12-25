@@ -282,7 +282,7 @@ const Dashboard = () => {
             }}>
                 <div>
                     <h1 style={{ margin: 0, marginBottom: '5px', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                        <span style={{ fontSize: '48px' }}>🎋</span>
+                        <span style={{ fontSize: '48px' }}>🎍</span>
                         <span style={{ fontSize: '32px', fontWeight: '800', letterSpacing: '2px' }}>KANRI</span>
                     </h1>
                     {/* Japanese Time-Based Greeting */}
