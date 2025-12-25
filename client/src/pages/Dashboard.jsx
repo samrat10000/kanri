@@ -620,7 +620,7 @@ const Dashboard = () => {
                                     <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Choose Icon</span>
                                     <button onClick={() => setShowEmojiPicker(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: colors.text }}>×</button>
                                 </div>
-                                <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                                <div>
                                     {[
                                         { cat: 'Productivity', icons: ['⚡', '🎯', '🚀', '✅', '🚧', '🔥'] },
                                         { cat: 'Organization', icons: ['📂', '📊', '📎', '🏷️', '📅', '🧠'] },
