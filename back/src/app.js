@@ -28,7 +28,8 @@ const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:5174',
     'https://kanri.onrender.com',
-    'https://kanri-frontend.onrender.com'
+    'https://kanri-frontend.onrender.com',
+    'https://kanri-1s2f.onrender.com'  // Actual deployed URL
 ];
 
 app.use(cors({
