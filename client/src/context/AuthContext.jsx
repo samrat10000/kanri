@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     // Axios config: Always send cookies (IMPORTANT)
     axios.defaults.withCredentials = true;
-    axios.defaults.baseURL = 'http://localhost:5000';
+    axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
     // Check if user is logged in (Load User)
     useEffect(() => {
