@@ -22,10 +22,25 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Enable CORS (Cross-Origin Resource Sharing)
-// This allows the Frontend (port 5173) to talk to Backend (port 5000)
+// This allows the Frontend to talk to Backend
 // credentials: true IS REQUIRED for cookies to work!
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://kanri.onrender.com',
+    'https://kanri-frontend.onrender.com'
+];
+
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or Postman)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.onrender.com')) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }));
 
