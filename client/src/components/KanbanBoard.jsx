@@ -64,7 +64,10 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleSubtask, getPriorityColor, f
                     </span>
                 )}
                 <div>
-                    <strong style={{ fontSize: '14px' }}>{task.title}</strong>
+                    <strong style={{ fontSize: '14px' }}>
+                        <span style={{ marginRight: '5px' }}>{task.emoji || '📝'}</span>
+                        {task.title}
+                    </strong>
                     <br />
                     <small style={{ color: theme === 'light' ? 'gray' : '#aaa', fontSize: '11px' }}>
                         {task.priority.toUpperCase()}

@@ -26,6 +26,11 @@ const taskSchema = new mongoose.Schema({
         enum: ['low', 'medium', 'high'],
         default: 'low'
     },
+    // NEW: Aesthetic Emoji
+    emoji: {
+        type: String,
+        default: '📝'
+    },
     dueDate: {
         type: Date
     },

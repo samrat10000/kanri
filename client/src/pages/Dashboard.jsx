@@ -21,6 +21,9 @@ const Dashboard = () => {
 
     // const [priority, setPriority] = useState('low');
 
+    // NEW: Emoji State
+    const [emoji, setEmoji] = useState('📝');
+
     // NEW: Due Date State
     const [dueDate, setDueDate] = useState('');
 
@@ -138,7 +141,7 @@ const Dashboard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const taskData = { title, status, priority, dueDate };
+        const taskData = { title, status, priority, dueDate, emoji };
 
         try {
             if (isEditing) {
@@ -158,6 +161,7 @@ const Dashboard = () => {
             setTitle('');
             setStatus('pending');
             setPriority('low');
+            setEmoji('📝');
             setDueDate('');
             setSubTasks([]);
             setSubTaskInput('');
@@ -175,6 +179,7 @@ const Dashboard = () => {
         setTitle(task.title);
         setStatus(task.status);
         setPriority(task.priority);
+        setEmoji(task.emoji || '📝');
         setSubTasks(task.subTasks || []);
         // Format date for input (YYYY-MM-DD)
         setDueDate(task.dueDate ? task.dueDate.split('T')[0] : '');
@@ -574,6 +579,32 @@ const Dashboard = () => {
                         <option value="medium">○ Medium Priority</option>
                         <option value="high">● High Priority</option>
                     </select>
+
+                    {/* NEW: Aesthetic Emoji Picker */}
+                    <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', alignItems: 'center', background: colors.inputBg, padding: '8px', borderRadius: '5px', border: `1px solid ${colors.inputBorder}` }}>
+                        <span style={{ fontSize: '12px', opacity: 0.7 }}>Icon:</span>
+                        {['🎋', '🌸', '🍵', '⚡', '🪐', '🔮', '🧸', '📚', '💻', '🎨', '🎬', '🏋️‍♀️', '🧘‍♀️', '🚲', '🛒', '🧹', '💊', '💸', '✈️', '💌', '📝'].map(e => (
+                            <button
+                                type="button"
+                                key={e}
+                                onClick={() => setEmoji(e)}
+                                style={{
+                                    background: emoji === e ? colors.accent : 'transparent',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    fontSize: '16px',
+                                    padding: '2px 5px',
+                                    borderRadius: '4px',
+                                    transition: 'all 0.2s',
+                                    transform: emoji === e ? 'scale(1.2)' : 'scale(1)'
+                                }}
+                                title="Select Icon"
+                            >
+                                {e}
+                            </button>
+                        ))}
+                    </div>
+
                     <button type="submit" style={{ padding: '8px 20px', background: isEditing ? '#1890ff' : (theme === 'light' ? 'black' : 'white'), color: isEditing ? 'white' : (theme === 'light' ? 'white' : 'black'), border: 'none' }}>
                         {isEditing ? 'Update' : 'Add'}
                     </button>
@@ -642,7 +673,10 @@ const Dashboard = () => {
                                     </span>
                                 )}
                                 <div>
-                                    <strong>{task.title}</strong>
+                                    <strong style={{ fontSize: '16px' }}>
+                                        <span style={{ marginRight: '8px', fontSize: '18px' }}>{task.emoji || '📝'}</span>
+                                        {task.title}
+                                    </strong>
                                     <br />
                                     <small style={{ color: theme === 'light' ? 'gray' : '#aaa' }}>
                                         {task.status} • {task.priority.toUpperCase()}
