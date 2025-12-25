@@ -275,7 +275,10 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)'
             }}>
                 <div>
-                    <h1 style={{ margin: 0, marginBottom: '5px', fontSize: '48px' }}>🪷</h1>
+                    <h1 style={{ margin: 0, marginBottom: '5px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+                        <span style={{ fontSize: '48px' }}>🪷</span>
+                        <span style={{ fontSize: '32px', fontWeight: '800', letterSpacing: '2px' }}>KANRI</span>
+                    </h1>
                     {/* Japanese Time-Based Greeting */}
                     <div style={{ fontSize: '14px', opacity: 0.9 }}>
                         <span style={{ fontWeight: 'bold', color: colors.text }}>{greeting.jp}</span>
