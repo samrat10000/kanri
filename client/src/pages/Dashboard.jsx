@@ -23,6 +23,7 @@ const Dashboard = () => {
 
     // NEW: Emoji State
     const [emoji, setEmoji] = useState('📝');
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
     // NEW: Due Date State
     const [dueDate, setDueDate] = useState('');
@@ -580,29 +581,81 @@ const Dashboard = () => {
                         <option value="high">● High Priority</option>
                     </select>
 
-                    {/* NEW: Aesthetic Emoji Picker */}
-                    <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', alignItems: 'center', background: colors.inputBg, padding: '8px', borderRadius: '5px', border: `1px solid ${colors.inputBorder}` }}>
-                        <span style={{ fontSize: '12px', opacity: 0.7 }}>Icon:</span>
-                        {['🎋', '🌸', '🍵', '⚡', '🪐', '🔮', '🧸', '📚', '💻', '🎨', '🎬', '🏋️‍♀️', '🧘‍♀️', '🚲', '🛒', '🧹', '💊', '💸', '✈️', '💌', '📝'].map(e => (
-                            <button
-                                type="button"
-                                key={e}
-                                onClick={() => setEmoji(e)}
-                                style={{
-                                    background: emoji === e ? colors.accent : 'transparent',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    fontSize: '16px',
-                                    padding: '2px 5px',
-                                    borderRadius: '4px',
-                                    transition: 'all 0.2s',
-                                    transform: emoji === e ? 'scale(1.2)' : 'scale(1)'
-                                }}
-                                title="Select Icon"
-                            >
-                                {e}
-                            </button>
-                        ))}
+                    {/* NEW: Aesthetic Emoji Picker (Popover) */}
+                    <div style={{ position: 'relative' }}>
+                        <button
+                            type="button"
+                            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                            style={{
+                                padding: '8px 15px',
+                                background: colors.inputBg,
+                                color: colors.text,
+                                border: `1px solid ${colors.inputBorder}`,
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            <span style={{ fontSize: '18px' }}>{emoji}</span>
+                            <span style={{ fontSize: '12px', opacity: 0.8 }}>Select Icon</span>
+                        </button>
+
+                        {showEmojiPicker && (
+                            <div style={{
+                                position: 'absolute',
+                                bottom: '100%',
+                                left: '0',
+                                marginBottom: '10px',
+                                width: '300px',
+                                background: colors.cardBg,
+                                border: `1px solid ${colors.cardBorder}`,
+                                borderRadius: '8px',
+                                padding: '15px',
+                                zIndex: 1000,
+                                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                            }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', paddingBottom: '5px', borderBottom: `1px solid ${colors.cardBorder}` }}>
+                                    <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Choose Icon</span>
+                                    <button onClick={() => setShowEmojiPicker(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: colors.text }}>×</button>
+                                </div>
+                                <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                                    {[
+                                        { cat: 'Productivity', icons: ['⚡', '🎯', '🚀', '✅', '🚧', '🔥'] },
+                                        { cat: 'Organization', icons: ['📂', '📊', '📎', '🏷️', '📅', '🧠'] },
+                                        { cat: 'Communication', icons: ['💬', '🤝', '📢', '👤', '👥', '📞'] },
+                                        { cat: 'Zen', icons: ['🌿', '💡', '☕', '🎧', '✨'] }
+                                    ].map(group => (
+                                        <div key={group.cat} style={{ marginBottom: '10px' }}>
+                                            <div style={{ fontSize: '10px', opacity: 0.6, marginBottom: '5px', textTransform: 'uppercase' }}>{group.cat}</div>
+                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '5px' }}>
+                                                {group.icons.map(icon => (
+                                                    <button
+                                                        type="button"
+                                                        key={icon}
+                                                        onClick={() => { setEmoji(icon); setShowEmojiPicker(false); }}
+                                                        style={{
+                                                            fontSize: '18px',
+                                                            background: emoji === icon ? colors.accent : 'transparent',
+                                                            border: 'none',
+                                                            borderRadius: '4px',
+                                                            cursor: 'pointer',
+                                                            padding: '4px',
+                                                            transition: 'transform 0.1s'
+                                                        }}
+                                                        onMouseEnter={e => e.target.style.transform = 'scale(1.2)'}
+                                                        onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                                                    >
+                                                        {icon}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <button type="submit" style={{ padding: '8px 20px', background: isEditing ? '#1890ff' : (theme === 'light' ? 'black' : 'white'), color: isEditing ? 'white' : (theme === 'light' ? 'white' : 'black'), border: 'none' }}>
