@@ -508,7 +508,7 @@ const Dashboard = () => {
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
                     style={{
-                        width: '100%',
+                        width: '400px',
                         padding: '12px',
                         fontSize: '14px',
                         background: colors.inputBg,
