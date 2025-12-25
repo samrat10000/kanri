@@ -29,7 +29,7 @@ services:
     pullRequestPreviewsEnabled: true
     envVars:
       - key: VITE_API_URL
-        value: https://kanri-api.onrender.com  # Update this after backend deploys
+        value: https://kanri-api.onrender.com
     routes:
       - type: rewrite
         source: /*
