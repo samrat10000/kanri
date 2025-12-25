@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+input, select {
+    border: 2px solid #000;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus {
+    background: #f0f0f0;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+}
