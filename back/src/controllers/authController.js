@@ -83,7 +83,9 @@ const sendTokenResponse = (user, statusCode, res) => {
         expires: new Date(
             Date.now() + 30 * 24 * 60 * 60 * 1000 // 30 days
         ),
-        httpOnly: true // Cookie cannot be accessed by client side JS (XSS protection)
+        httpOnly: true, // Cookie cannot be accessed by client side JS (XSS protection)
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-origin in production
+        secure: process.env.NODE_ENV === 'production' // HTTPS only in production
     };
 
     res
