@@ -606,7 +606,7 @@ const Dashboard = () => {
                             <div style={{
                                 position: 'absolute',
                                 bottom: '100%',
-                                left: '0',
+                                right: '0',
                                 marginBottom: '10px',
                                 width: '300px',
                                 background: colors.cardBg,
