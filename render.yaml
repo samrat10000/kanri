@@ -1,0 +1,37 @@
+services:
+  # Backend API
+  - type: web
+    name: kanri-api
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: cd back && npm install
+    startCommand: cd back && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_EXPIRE
+        value: 30d
+      - key: MONGO_URI
+        sync: false  # Set this manually in Render dashboard for security
+      - key: JWT_SECRET
+        generateValue: true  # Render will auto-generate a secure secret
+    healthCheckPath: /
+
+  # Frontend Static Site
+  - type: web
+    name: kanri
+    runtime: static
+    region: oregon
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: VITE_API_URL
+        value: https://kanri-api.onrender.com  # Update this after backend deploys
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
