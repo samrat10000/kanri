@@ -36,7 +36,7 @@ const Login = () => {
             }}>
                 <h2 style={{ textAlign: 'center', marginBottom: '30px', color: colors.text, fontWeight: '800', letterSpacing: '1px' }}>
                     <span style={{ fontSize: '0.8em', display: 'block', opacity: 0.7 }}>ログイン</span>
-                    LOGIN TO PROTASKER
+                    LOGIN TO KANRI
                 </h2>
                 <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ marginBottom: '20px', width: '100%' }}>

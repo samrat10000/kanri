@@ -275,7 +275,7 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)'
             }}>
                 <div>
-                    <h1 style={{ margin: 0, marginBottom: '5px' }}>ProTasker Dashboard</h1>
+                    <h1 style={{ margin: 0, marginBottom: '5px' }}>Kanri Dashboard</h1>
                     {/* Japanese Time-Based Greeting */}
                     <div style={{ fontSize: '14px', opacity: 0.9 }}>
                         <span style={{ fontWeight: 'bold', color: colors.text }}>{greeting.jp}</span>

@@ -38,7 +38,7 @@ const Register = () => {
             }}>
                 <h2 style={{ textAlign: 'center', marginBottom: '30px', color: colors.text, fontWeight: '800', letterSpacing: '1px' }}>
                     <span style={{ fontSize: '0.8em', display: 'block', opacity: 0.7 }}>登録</span>
-                    JOIN PROTASKER
+                    JOIN KANRI
                 </h2>
 
                 {error && (
